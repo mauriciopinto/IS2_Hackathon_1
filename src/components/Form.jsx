@@ -12,7 +12,7 @@ export class RegularForm extends React.Component {
                     <tbody>
                         {
                             this.props.children.map ((e, i) => {
-                                return <td key={i}>e</td>
+                                return <tr><td key={i}>{e}</td></tr>
                             })
                         }
                     </tbody>

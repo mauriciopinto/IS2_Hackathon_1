@@ -17,11 +17,14 @@ class Login extends React.Component {
 
     render () {
         return (
+            <>
+            <h1>Ingresa a la tienda</h1>
             <RegularForm handleSubmit={this.submitLogin}>
                 <input type="text" placeholder="Usuario"/>
                 <input type="password" placeholder="Contraseña"/>
                 <button type='submit'>Ingresar</button>
             </RegularForm>
+            </>
         )
     }
 }
