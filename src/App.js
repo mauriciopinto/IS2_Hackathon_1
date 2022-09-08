@@ -6,6 +6,8 @@ import Register from './pages/register';
 import ProfilePage from './pages/profile';
 import TicketPage from './pages/ticket';
 import PurchasePage from './pages/purchase';
+import ProductPage from './pages/product';
+import CartPage from './pages/cart';
 
 function App() {
   return (
@@ -15,9 +17,13 @@ function App() {
           <Route path="/" element={<Store />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
+          <Route path="/checkout" element={<CartPage />} />
           <Route path="/profile/:userId" element={<CustomProfile/>} />
+          <Route path="/purchase/list/userId" element={<CustomPurchaseList />} />
           <Route path="/purchase/:purchaseId" element={<CustomPurchase />} />
           <Route path="/ticket/:ticketId" element={<CustomTicket />} />
+          <Route path="/product/:productId" element={<CustomProduct />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -37,6 +43,22 @@ function CustomPurchase () {
 function CustomTicket () {
   let params = useParams();
   return <TicketPage id={params.ticketId}/>
+}
+
+function Logout () {
+  localStorage.removeItem ('token')
+  localStorage.removeItem ('user')
+  window.location.href = '/login'
+}
+
+function CustomProduct () {
+  let params = useParams();
+  return <ProductPage id={params.productId}/>
+}
+
+function CustomPurchaseList () {
+  let params = useParams();
+  return <ProductPage id={params.productId}/>
 }
 
 export default App;

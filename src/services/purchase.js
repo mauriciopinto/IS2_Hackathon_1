@@ -1,41 +1,50 @@
 import axios from 'axios'
-import env from 'react-dotenv'
 
 export function getPurchaseDataById (purchaseId) {
     let requestData = {
-        withCredentials: true
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        }
     }
 
-    let url = process.env.API_URL + '/purchase/' + purchaseId
+    let url = process.env.REACT_APP_PURCHASE_API_URL + '/' + purchaseId
 
     return axios.get(url, requestData)
 }
 
 export function getPurchasesByUserId (userId) {
     let requestData = {
-        withCredentials: true,
-        params: {
-            userId: userId
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
         }
     }
 
-    let url = process.env.API_URL + '/purchase'
+    let url = process.env.REACT_APP_PURCHASE_API_URL + '/user/' + userId
 
     return axios.get(url, requestData)
 }
 
 export function getAllPurchases () {
     let requestData = {
-        withCredentials: true
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        }
     }
 
-    let url = process.env.API_URL + '/purchase'
+    let url = process.env.REACT_APP_PURCHASE_API_URL
 
     return axios.get (url, requestData)
 }
 
 export function postPurchase (purchaseData) {
-    let url = process.env.API_URL + '/purchase'
+    let requestData = {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        },
+        data: purchaseData
+    }
 
-    return axios.post (url, purchaseData)
+    let url = process.env.REACT_APP_PURCHASE_API_URL
+
+    return axios.post (url, requestData)
 }

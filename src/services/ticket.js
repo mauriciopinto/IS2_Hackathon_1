@@ -3,39 +3,49 @@ import env from 'react-dotenv'
 
 export function getTicketDataById (ticketId) {
     let requestData = {
-        withCredentials: true
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        }
     }
 
-    let url = process.env.API_URL + '/ticket/' + ticketId
+    let url = process.env.REACT_APP_TICKET_API_URL + '/' + ticketId
     
     return axios.get (url, requestData)
 }
 
 export function getTicketsByUserId (userId) {
     let requestData = {
-        withCredentials: true,
-        params: {
-            userId: userId
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
         }
     }
 
-    let url = process.env.API_URL + '/ticket'
+    let url = process.env.REACT_APP_TICKET_API_URL + '/user/' + userId
 
     return axios.get (url, requestData)
 }
 
 export function getAllTickets () {
     let requestData = {
-        withCredentials: true
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        }
     }
 
-    let url = process.env.API_URL + '/ticket'
+    let url = process.env.REACT_APP_TICKET_API_URL
 
     return axios.get (url, requestData)
 }
 
 export function postTicket (ticketData) {
-    let url = process.env.API_URL + '/ticket'
+    let requestData = {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        },
+        data: ticketData
+    }
 
-    return axios.post (url, ticketData)
+    let url = process.env.REACT_APP_TICKET_API_URL
+
+    return axios.post (url, requestData)
 }

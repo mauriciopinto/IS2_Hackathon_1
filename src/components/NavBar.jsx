@@ -1,8 +1,19 @@
 import React from 'react'
 
-let NavItems = [
+let notLoggedNavItems = [
     {
-        text: 'Home',
+        text: 'Inicio',
+        href: '/'
+    },
+    {
+        text: 'Iniciar Sesión',
+        href: '/login'
+    }
+]
+
+let clientNavItems = [
+    {
+        text: 'Inicio',
         href: '/'
     },
     {
@@ -11,10 +22,33 @@ let NavItems = [
     },
     {
         text: 'Mis Compras',
-        href: '/user'
+        href: '/purchase'
     },
     {
         text: 'Mis Tickets',
+        href: '/tickets'
+    },
+    {
+        text: 'Cerrar Sesión',
+        href: '/logout'
+    }
+]
+
+let adminNavItems = [
+    {
+        text: 'Inicio',
+        href: '/'
+    },
+    {
+        text: 'Perfil',
+        href: '/user'
+    },
+    {
+        text: 'Ventas',
+        href: '/purchase'
+    },
+    {
+        text: 'Tickets',
         href: '/tickets'
     },
     {
@@ -27,8 +61,22 @@ class NavBar extends React.Component {
     constructor (props) {
         super (props)
 
-        this.state = {
-            navItems: NavItems
+        let user = localStorage.getItem('user')
+        if (user) {
+            user = JSON.parse (user)
+            if (user.role === "ADMIN") {
+                this.state = {
+                    navItems: adminNavItems
+                }
+            } else {
+                this.state = {
+                    navItems: clientNavItems
+                }
+            }
+        } else {
+            this.state = {
+                navItems: notLoggedNavItems
+            }
         }
     }
 
@@ -40,13 +88,14 @@ class NavBar extends React.Component {
                     
                 }}>
                     {
-                        NavItems.map ((e, i) => {
+                        this.state.navItems.map ((e, i) => {
                             return <li key={i} style={{
                                 float: 'left',
                                 padding: '1em'
                             }}><a href={e.href}>{e.text}</a></li>
                         })
                     }
+                    <li><a href='/checkout'>{'Carrito(' + localStorage.getItem('total') + ')'}</a></li>
                 </ul>
             </nav>
         )

@@ -1,5 +1,5 @@
 import React from "react";
-import { RegularForm } from "../components/Form";
+import { FormElement, RegularForm } from "../components/Form";
 import { Grid, GridElement } from "../components/Grid";
 import { NoticeBox } from "../components/Notice"
 import { postUserRegister } from '../services/user'
@@ -87,11 +87,11 @@ class Register extends React.Component {
 
             postUserRegister (userData)
             .then ((res) => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     window.location.href = '/login'
                 }
                 else {
-                    console.log("bad request")
+                    console.log(res)
                 }
             })
             .catch ((err) => console.log (err))
@@ -105,13 +105,12 @@ class Register extends React.Component {
                     <h1>Ingresa tus datos y regístrate</h1>
                 </GridElement>
                 <GridElement gridRow="3 / 8" gridColumn="3 / 7" boxStyle={true}>
-                    <RegularForm handleSubmit={this.submitRegister}>
-                        <h3>Llena tus datos</h3>
-                        <input type="text" placeholder="Usuario" name="uname"/>
-                        <input type="email" placeholder="Correo" name="email"/>
-                        <input type="password" placeholder="Contraseña" onChange={this.checkPassword} name="pwd"/>
-                        <input type="password" placeholder="Repita su Contraseña" onChange={this.matchPasswords} name="pwdRepeat"/>
-                        <button type="submit">Registrarse</button>
+                    <h3>Llena tus datos</h3>
+                    <RegularForm handleSubmit={this.submitRegister} submitText="Registrarse" editable={true}>
+                        <FormElement type="text" placeholder="Usuario" name="Usuario" editable={true}/>
+                        <FormElement type="email" placeholder="Correo" name="Email" editable={true}/>
+                        <FormElement type="password" placeholder="Contraseña" onChange={this.checkPassword} name="Contraseña" editable={true}/>
+                        <FormElement type="password" placeholder="Repita su Contraseña" onChange={this.matchPasswords} name="Repetir la contraseña" editable={true}/>
                     </RegularForm>
                     <NoticeBox show={this.state.showError}>
                         {

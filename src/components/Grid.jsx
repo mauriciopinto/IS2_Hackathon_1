@@ -39,12 +39,14 @@ export class GridElement extends React.Component {
                         gridColumn: this.props.gridColumn,
                         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.3)',
                         backgroundColor: 'white',
-                        borderRadius: '0.5em'
+                        borderRadius: '0.5em',
+                        overflow: this.props.overflow
                     }
                     :
                     {
                         gridRow: this.props.gridRow,
                         gridColumn: this.props.gridColumn,
+                        overflow: this.props.overflow
                     }
             }
             >

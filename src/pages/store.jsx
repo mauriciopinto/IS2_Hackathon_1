@@ -2,41 +2,50 @@ import React from 'react'
 import { RegularList } from '../components/List'
 import NavBar from '../components/NavBar'
 import { Grid, GridElement } from '../components/Grid'
-
-let sampleItems = [
-    {
-        id: '1',
-        name: 'Pelota de futbol',
-        description: 'Una pelota para jugar futbol',
-        stock: 10
-    },
-    {
-        id: '2',
-        name: 'Pelota de basquet',
-        description: 'Una pelota para jugar basquet',
-        stock: 5
-    },
-    {
-        id: '3',
-        name: 'Pelota de voley',
-        description: 'Una pelota para jugar voley',
-        stock: 20
-    }
-]
+import { getAllProducts } from '../services/product'
 
 class Store extends React.Component {
     constructor (props) {
         super (props)
 
         this.state = {
-            items: sampleItems,
+            items: [],
             empty: false,
             cartAmount: 0,
         }
     }
 
+    componentDidMount () {
+        getAllProducts ()
+        .then ((res) => {
+            this.setState({
+                items: res.data
+            })
+        })
+    }
+
     addToCart (item) {
-        console.log (item)
+        let cart = JSON.parse(localStorage.getItem('cart')) || []
+        let present = false
+        for (let i = 0; i < cart.length; ++i) {
+            let p = cart[i]
+            if (p.productId === item._id) {
+                p.quantity = p.quantity + 1
+                present = true
+            }
+        }
+        if (!present) {
+            cart.push ({
+                productId: item._id,
+                productName: item.name,
+                quantity: 1
+            })
+        }
+        localStorage.setItem('cart', JSON.stringify (cart))
+        let total = parseInt (localStorage.getItem ('total')) || 0
+        total = total + 1
+        localStorage.setItem ('total', total)
+        window.location.href = '/'
     }
 
     render () {
@@ -49,7 +58,7 @@ class Store extends React.Component {
                 <GridElement gridRow="2" gridColumn="1 / 9">
                     <h1>Compra en la tienda</h1>
                 </GridElement>
-                <GridElement gridRow="3 / 10" gridColumn="1 / 9">
+                <GridElement gridRow="3 / 11" gridColumn="1 / 9" overflow="scroll">
                     <RegularList elements={this.state.items} action={this.addToCart}/>
                 </GridElement>
             </Grid>

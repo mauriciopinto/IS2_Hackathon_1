@@ -1,44 +1,62 @@
 import axios from 'axios'
-import env from 'react-dotenv'
 
 export function getProductDataById (productId) {
     let requestData = {
-        withCredentials: true
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        }
     }
 
-    let url = process.env.API_URL + '/product/' + productId
+    let url = process.env.REACT_APP_PRODUCT_API_URL + '/' + productId
 
     return axios.get (url, requestData)
 }
 
 export function getAllProducts () {
     let requestData = {
-        withCredentials: true
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        }
     }
-    
-    let url = process.env.API_URL + '/product'
+    let url = process.env.REACT_APP_PRODUCT_API_URL
 
     return axios.get (url, requestData)
 }
 
 export function postProduct (productData) {
-    let url = process.env.API_URL + '/product'
+    let requestData = {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        },
+        data: productData
+    }
 
-    return axios.post (url, productData)
+    let url = process.env.REACT_APP_PRODUCT_API_URL
+
+    return axios.post (url, requestData)
 }
 
-export function updateProduct (productId, productData) {
-    let url = process.env.API_URL + '/product/' + productId
+export function patchProduct (productId, productData) {
+    let requestData = {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        },
+        data: productData
+    }
 
-    return axios.patch (url, productData)
+    let url = process.env.REACT_APP_PRODUCT_API_URL + '/' + productId
+
+    return axios.patch (url, requestData)
 }
 
 export function deleteProduct (productId) {
     let requestData = {
-        withCredentials: true
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem ('token')
+        }
     }
 
-    let url = process.env.API_URL + '/product/' + productId
+    let url = process.env.REACT_APP_PRODUCT_API_URL + '/' + productId
 
     return axios.delete (url, requestData)
 }
