@@ -7,7 +7,12 @@ export class RegularForm extends React.Component {
 
     render () {
         return (
-            <form onSubmit={this.props.onSubmit}>
+            <form 
+                onSubmit={this.props.handleSubmit} 
+                style={{
+                    padding: '1.5em'
+                }}
+            >
                 <table>
                     <tbody>
                         {

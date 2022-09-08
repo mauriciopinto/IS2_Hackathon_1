@@ -1,5 +1,7 @@
 import React from 'react'
 import { RegularList } from '../components/List'
+import NavBar from '../components/NavBar'
+import { Grid, GridElement } from '../components/Grid'
 
 let sampleItems = [
     {
@@ -40,9 +42,17 @@ class Store extends React.Component {
     render () {
         return (
         <>
-            <h1>Compra en la tienda</h1>
-            <a href="/logout">Cerrar Sesion</a>
-            <RegularList elements={this.state.items} action={this.addToCart}/>
+            <Grid rows="10" columns="8">
+                <GridElement gridRow="1" gridColumn="1 / 9" boxStyle={true}>
+                    <NavBar />
+                </GridElement>
+                <GridElement gridRow="2" gridColumn="1 / 9">
+                    <h1>Compra en la tienda</h1>
+                </GridElement>
+                <GridElement gridRow="3 / 10" gridColumn="1 / 9">
+                    <RegularList elements={this.state.items} action={this.addToCart}/>
+                </GridElement>
+            </Grid>
         </>
         )
     }
