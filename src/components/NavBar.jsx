@@ -17,10 +17,6 @@ let clientNavItems = [
         href: '/'
     },
     {
-        text: 'Perfil',
-        href: '/user'
-    },
-    {
         text: 'Mis Compras',
         href: '/purchase_list/'
     },
@@ -38,10 +34,6 @@ let adminNavItems = [
     {
         text: 'Inicio',
         href: '/'
-    },
-    {
-        text: 'Perfil',
-        href: '/user'
     },
     {
         text: 'Ventas',
