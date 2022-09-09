@@ -8,6 +8,8 @@ import TicketPage from './pages/ticket';
 import PurchasePage from './pages/purchase';
 import ProductPage from './pages/product';
 import CartPage from './pages/cart';
+import PurchaseListPage from './pages/purchaselist';
+import TicketListPage from './pages/ticketlist';
 
 function App() {
   return (
@@ -19,8 +21,9 @@ function App() {
           <Route path="/register" element={<Register />}/>
           <Route path="/checkout" element={<CartPage />} />
           <Route path="/profile/:userId" element={<CustomProfile/>} />
-          <Route path="/purchase/list/userId" element={<CustomPurchaseList />} />
+          <Route path="/purchase_list" element={<PurchaseListPage />} />
           <Route path="/purchase/:purchaseId" element={<CustomPurchase />} />
+          <Route path="/ticket_list" element={<TicketListPage />} />
           <Route path="/ticket/:ticketId" element={<CustomTicket />} />
           <Route path="/product/:productId" element={<CustomProduct />} />
           <Route path="/logout" element={<Logout />} />
@@ -58,7 +61,12 @@ function CustomProduct () {
 
 function CustomPurchaseList () {
   let params = useParams();
-  return <ProductPage id={params.productId}/>
+  return <PurchaseListPage id={params.userId}/>
+}
+
+function CustomTicketList () {
+  let params = useParams();
+  return <TicketListPage id={params.userId}/>
 }
 
 export default App;

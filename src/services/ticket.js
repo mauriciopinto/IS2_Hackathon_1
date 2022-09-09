@@ -42,10 +42,9 @@ export function postTicket (ticketData) {
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem ('token')
         },
-        data: ticketData
     }
 
     let url = process.env.REACT_APP_TICKET_API_URL
 
-    return axios.post (url, requestData)
+    return axios.post (url, ticketData, requestData)
 }

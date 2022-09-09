@@ -80,9 +80,8 @@ class Register extends React.Component {
         
             let userData = {
                 username: e.target[0].value,
-                email: this.state.email,
-                password: this.state.password,
-                role: 'Client'
+                email: e.target[1].value,
+                password: this.state.password
             }
 
             postUserRegister (userData)
@@ -107,10 +106,10 @@ class Register extends React.Component {
                 <GridElement gridRow="3 / 8" gridColumn="3 / 7" boxStyle={true}>
                     <h3>Llena tus datos</h3>
                     <RegularForm handleSubmit={this.submitRegister} submitText="Registrarse" editable={true}>
-                        <FormElement type="text" placeholder="Usuario" name="Usuario" editable={true}/>
-                        <FormElement type="email" placeholder="Correo" name="Email" editable={true}/>
-                        <FormElement type="password" placeholder="Contraseña" onChange={this.checkPassword} name="Contraseña" editable={true}/>
-                        <FormElement type="password" placeholder="Repita su Contraseña" onChange={this.matchPasswords} name="Repetir la contraseña" editable={true}/>
+                        <input type="text" placeholder="Usuario" name="Usuario"/>
+                        <input type="email" placeholder="Correo" name="Email" editable={true} />
+                        <input type="password" placeholder="Contraseña" onChange={this.checkPassword} name="Contraseña"/>
+                        <input type="password" placeholder="Repita su Contraseña" onChange={this.matchPasswords} name="Repetir la contraseña"/>
                     </RegularForm>
                     <NoticeBox show={this.state.showError}>
                         {

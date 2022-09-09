@@ -40,11 +40,10 @@ export function postPurchase (purchaseData) {
     let requestData = {
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem ('token')
-        },
-        data: purchaseData
+        }
     }
 
     let url = process.env.REACT_APP_PURCHASE_API_URL
 
-    return axios.post (url, requestData)
+    return axios.post (url, purchaseData, requestData)
 }

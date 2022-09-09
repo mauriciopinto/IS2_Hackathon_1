@@ -10,6 +10,10 @@ class ProfilePage extends React.Component {
             email: '',
             role: '',
         }
+
+        if (!localStorage.getItem('user')) {
+            window.location.href = '/login'
+        }
     }
 
     render () {

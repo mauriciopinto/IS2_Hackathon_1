@@ -22,11 +22,11 @@ let clientNavItems = [
     },
     {
         text: 'Mis Compras',
-        href: '/purchase'
+        href: '/purchase_list/'
     },
     {
         text: 'Mis Tickets',
-        href: '/tickets'
+        href: '/ticket_list'
     },
     {
         text: 'Cerrar Sesión',
@@ -45,11 +45,11 @@ let adminNavItems = [
     },
     {
         text: 'Ventas',
-        href: '/purchase'
+        href: '/purchase_list'
     },
     {
         text: 'Tickets',
-        href: '/tickets'
+        href: '/ticket_list'
     },
     {
         text: 'Cerrar Sesión',

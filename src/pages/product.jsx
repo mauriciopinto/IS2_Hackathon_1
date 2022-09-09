@@ -20,6 +20,10 @@ class ProductPage extends React.Component {
         this.addToCart = this.addToCart.bind(this)
         this.updateProduct = this.updateProduct.bind(this)
         this.setEditable = this.setEditable.bind(this)
+
+        if (!localStorage.getItem('user')) {
+            window.location.href = '/login'
+        }
     }
 
     componentDidMount () {

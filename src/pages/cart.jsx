@@ -7,6 +7,10 @@ import { postPurchase } from '../services/purchase'
 class CartPage extends React.Component {
     constructor (props) {
         super (props)
+
+        if (!localStorage.getItem('user')) {
+            window.location.href = '/login'
+        }
     }
 
     clearCart () {
@@ -27,6 +31,9 @@ class CartPage extends React.Component {
         postPurchase (purchaseData)
         .then ((res) => {
             console.log (res)
+            localStorage.removeItem('cart')
+            localStorage.setItem('total', 0)
+            window.location.href='/'
         })
         .catch ((err) => {
             console.log (err)

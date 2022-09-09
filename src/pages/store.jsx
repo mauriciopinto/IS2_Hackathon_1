@@ -13,6 +13,10 @@ class Store extends React.Component {
             empty: false,
             cartAmount: 0,
         }
+
+        if (!localStorage.getItem('user')) {
+            window.location.href = '/login'
+        }
     }
 
     componentDidMount () {
